@@ -34,11 +34,8 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1/login",
                         "/api/v1/register",
                         "/api/v1/accounts/login",
-                        "/api/v1/accounts/register")
-                .permitAll();
-        http.authorizeRequests()
-                .antMatchers("/api/v1/user").hasAnyAuthority("user");
-        http.authorizeRequests()
+                        "/api/v1/accounts/register").permitAll()
+                .antMatchers("/api/v1/user").hasAnyAuthority("user")
                 .antMatchers("/api/v1/admin").hasAnyAuthority("admin");
         http.addFilter(apiAuthenticationFilter);
         http.addFilterBefore(new ApiAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -23,12 +23,14 @@ public class AccountApi {
 
     @RequestMapping(path = "login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody Account account){
+
         Account existingAccount = accountRepository.findAccountByUsername(account.getUsername());
         if (existingAccount == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login fails");
         }
         boolean result = passwordEncoder.matches(account.getPassword(),
                 existingAccount.getPassword());
+
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

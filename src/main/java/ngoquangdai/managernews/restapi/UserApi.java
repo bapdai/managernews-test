@@ -25,7 +25,7 @@ public class UserApi {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "{id}")
-    public ResponseEntity<?> getDetails(@PathVariable Integer id){
+    public ResponseEntity<?> getDetail(@PathVariable Integer id){
         Optional<News> optionalNews = newsService.findById(id);
         if (!optionalNews.isPresent()){
             ResponseEntity.badRequest().build();
